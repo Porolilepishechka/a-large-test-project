@@ -1,7 +1,6 @@
 <?php
 $login = filter_var(trim($_POST['username']), FILTER_SANITIZE_STRING);
 $password = filter_var(trim($_POST['password']), FILTER_SANITIZE_STRING);
-$remember = $_POST['remember'];
 
 $password = md5($password);
 
@@ -16,8 +15,9 @@ if(count($user) == 0){
     echo '<br><a href="index.php">register page</a>';
     exit();
 }
+// перевіряє на наявність символів у змінній user
 
-setcookie("user_name", $user['name'], time() + 946707777);
+setcookie("user_name", $user['name'], time() + 946707777); // зберігає користувача в кукі
 
 header('Location: index.php');
 
