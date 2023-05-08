@@ -23,7 +23,7 @@ exit();
 echo "ви ввели завеликий пароль";
 echo '<br><a href="index.php">register page</a>';
 exit();
-} else{
+} else{ // коли всі перевірки були пройдені то зберігає нового користувача
 $password = md5($password);
 
 $mysql = new mysqli("localhost", "root", "", "Test db");
@@ -34,7 +34,5 @@ $mysql->query("INSERT INTO `users-db` (`name`, `password`) VALUES('$login', '$pa
 $mysql->close();
 
 header('Location: index.php');
-//echo "вас успішно було зарегестровано";
-//echo '<br><a href="index.php">register page</a>';
 }
 ?>
