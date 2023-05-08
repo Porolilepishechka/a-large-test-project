@@ -15,19 +15,22 @@
     $mysql = new mysqli("localhost", "root", "", "Test db");
     $mysql->query("SET NAMES 'utf8'");
     $mysql->query("SELECT * FROM `posts` ORDER BY `posts`.`id` DESC");
-    $leght_id = 5;
+    // підключення до бази данних
+    $leght_id = 2;
         do{
             $result_id = $mysql->query("SELECT `id` FROM `posts` WHERE `id` = '$i'");
             $id = $result_id->fetch_array();
-            $post_id = $id['id'];
-            $result = $mysql->query("SELECT * FROM `posts` WHERE `id` = '$post_id'");
-            $posts = $result->fetch_array();
+            $posts_id = $id['id']; // створюю просту зміну томущо масиви запит не приймає
+            $result = $mysql->query("SELECT * FROM `posts` WHERE `id` = '$posts_id'");
+            $posts = $result->fetch_array(); // отримує рядок результату у вигляді асоціативного масиву, числового масиву або обох
 
             if(!empty($posts['theme']) || !empty($posts['message'])){
-                echo '<div class="card">';
-                echo "<h2> from: ".$posts['user_name']."</h2><h4>".$posts['theme']."</h4>".$posts['message']."<br>".$posts['time']."<br>";
-                echo '</div>';
-                $leght_id++;
+                    $id_post = $posts['id'];
+                    echo "<div class='card'>";
+                    echo "<h2> from: ".$posts['user_name']."</h2><h4>".$posts['theme']."</h4>".$posts['message']."<br>".$posts['time']."<br>";
+                    echo '</div>';
+                    $leght_id++;
+                    //створює пости
             }
             $i++;
         }while($i < $leght_id);
