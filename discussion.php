@@ -24,13 +24,19 @@
             $result = $mysql->query("SELECT * FROM `posts` WHERE `id` = '$posts_id'");
             $posts = $result->fetch_array(); // отримує рядок результату у вигляді асоціативного масиву, числового масиву або обох
 
-            if(!empty($posts['theme']) || !empty($posts['message'])){
-                    $id_post = $posts['id'];
-                    echo "<div class='card'>";
-                    echo "<h2> from: ".$posts['user_name']."</h2><h4>".$posts['theme']."</h4>".$posts['message']."<br>".$posts['time']."<br>";
-                    echo '</div>';
-                    $leght_id++;
-                    //створює пости
+            if(!empty($posts['theme']) && !empty($posts['message'])){
+                echo "<div class='card'>";
+                echo "<h2> from: ".$posts['user_name']."</h2><h4>".$posts['theme']."</h4>".$posts['message']."<br>".$posts['time']."<br>";
+                echo '</div>';
+                $leght_id++;
+                //створює пости
+            }
+
+            if(trim($posts['to'] != "")){
+                echo "<div class='card'>";
+                echo "<h2> from: ".$posts['user_name']." to: ".$posts['to']."</h2>".$posts['message']."<br>".$posts['time']."<br>";
+                echo '</div>';
+                $leght_id++;
             }
             $i++;
         }while($i < $leght_id);
