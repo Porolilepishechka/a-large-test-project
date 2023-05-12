@@ -17,9 +17,9 @@
             <input type="text" placeholder="theme" name="theme"><br>
             <label>message : </label><br>
             <input type="text" placeholder="message to post" name="massage">
-            <button type="submit">Post</button>
+            <button type="submit">Post</button>  <a href="susik.php">massage page</a>
         </form>
     </div>   
-    <?php require("blocks/footer.php"); ?>
+<?php require("blocks/footer.php"); ?>
 </body>
 </html>
